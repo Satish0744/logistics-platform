@@ -1,0 +1,378 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   BASE — LIGHT MODE (WHITE BACKGROUND)
+   ============================================================ */
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    background-color: #ffffff;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  /* All text inherits black by default */
+  h1, h2, h3, h4, h5, h6,
+  p, span, label, div, a,
+  button, input, select, textarea {
+    color: inherit;
+  }
+
+  ::selection {
+    background: #dbeafe;
+    color: #000000;
+  }
+
+  .dark ::selection {
+    background: #1e40af;
+    color: #ffffff;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 1px;
+  }
+}
+
+/* ============================================================
+   FORCE ALL COMMON BACKGROUNDS TO WHITE IN LIGHT MODE
+   (This ensures no blue/gray tint sneaks in anywhere)
+   ============================================================ */
+html:not(.dark) body,
+html:not(.dark) #root,
+html:not(.dark) main,
+html:not(.dark) aside,
+html:not(.dark) header,
+html:not(.dark) nav,
+html:not(.dark) section,
+html:not(.dark) .bg-white,
+html:not(.dark) .bg-gray-50,
+html:not(.dark) .bg-gray-100,
+html:not(.dark) .bg-gray-200,
+html:not(.dark) .bg-slate-50,
+html:not(.dark) .bg-slate-100,
+html:not(.dark) .bg-slate-900,
+html:not(.dark) .bg-slate-950 {
+  background-color: #ffffff !important;
+}
+
+/* But keep cards bordered so they're visible on white bg */
+html:not(.dark) .bg-white,
+html:not(.dark) .bg-gray-50,
+html:not(.dark) .bg-slate-50 {
+  border-color: #e5e7eb;
+}
+
+/* Inputs stay white with light border */
+html:not(.dark) input,
+html:not(.dark) textarea,
+html:not(.dark) select {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #d1d5db;
+}
+
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Colored badges keep their tint in light mode */
+html:not(.dark) .bg-green-50  { background-color: #f0fdf4 !important; }
+html:not(.dark) .bg-blue-50   { background-color: #eff6ff !important; }
+html:not(.dark) .bg-yellow-50 { background-color: #fefce8 !important; }
+html:not(.dark) .bg-red-50    { background-color: #fef2f2 !important; }
+html:not(.dark) .bg-amber-50  { background-color: #fffbeb !important; }
+html:not(.dark) .bg-indigo-50 { background-color: #eef2ff !important; }
+html:not(.dark) .bg-cyan-50   { background-color: #ecfeff !important; }
+html:not(.dark) .bg-violet-50 { background-color: #f5f3ff !important; }
+html:not(.dark) .bg-purple-50 { background-color: #faf5ff !important; }
+
+/* Hover states in light mode → subtle gray */
+html:not(.dark) .hover\:bg-gray-100:hover,
+html:not(.dark) .hover\:bg-gray-50:hover,
+html:not(.dark) .hover\:bg-slate-100:hover,
+html:not(.dark) .hover\:bg-slate-50:hover {
+  background-color: #f3f4f6 !important;
+}
+
+html:not(.dark) .hover\:bg-gray-200:hover {
+  background-color: #e5e7eb !important;
+}
+
+/* Active nav item = light blue tint (not full blue) */
+html:not(.dark) .bg-blue-50 {
+  background-color: #eff6ff !important;
+}
+
+/* ============================================================
+   ☀️ LIGHT MODE OVERRIDES — make sure text is BLACK
+   ============================================================ */
+html:not(.dark) .text-black,
+html:not(.dark) .text-slate-900,
+html:not(.dark) .text-slate-800,
+html:not(.dark) .text-gray-900,
+html:not(.dark) .text-gray-800,
+html:not(.dark) .text-gray-700,
+html:not(.dark) .text-gray-600,
+html:not(.dark) .text-gray-500,
+html:not(.dark) .text-slate-700,
+html:not(.dark) .text-slate-600,
+html:not(.dark) .text-slate-500,
+html:not(.dark) .text-slate-400,
+html:not(.dark) .text-gray-400 {
+  color: #000000 !important;
+}
+
+/* Muted helper (opacity-based, keeps text readable) */
+html:not(.dark) .opacity-70 { opacity: 0.7; }
+html:not(.dark) .opacity-60 { opacity: 0.6; }
+
+/* ============================================================
+   🌙 DARK MODE — auto-convert white → slate
+   ============================================================ */
+html.dark body {
+  background-color: #020617 !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark .bg-white        { background-color: #0f172a !important; }
+html.dark .bg-gray-50      { background-color: #1e293b !important; }
+html.dark .bg-gray-100     { background-color: #1e293b !important; }
+html.dark .bg-gray-200     { background-color: #334155 !important; }
+html.dark .bg-slate-50     { background-color: #0f172a !important; }
+html.dark .bg-slate-100    { background-color: #1e293b !important; }
+
+html.dark .hover\:bg-gray-100:hover  { background-color: #1e293b !important; }
+html.dark .hover\:bg-gray-50:hover   { background-color: #1e293b !important; }
+html.dark .hover\:bg-gray-200:hover  { background-color: #334155 !important; }
+html.dark .hover\:bg-slate-100:hover { background-color: #1e293b !important; }
+
+html.dark .border-gray-200  { border-color: #1e293b !important; }
+html.dark .border-gray-300  { border-color: #334155 !important; }
+html.dark .border-slate-200 { border-color: #1e293b !important; }
+html.dark .border-slate-300 { border-color: #334155 !important; }
+
+html.dark,
+html.dark .text-black,
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-slate-700,
+html.dark .text-gray-900,
+html.dark .text-gray-800,
+html.dark .text-gray-700,
+html.dark .text-gray-600 {
+  color: #f1f5f9 !important;
+}
+
+html.dark .text-slate-600,
+html.dark .text-slate-500,
+html.dark .text-gray-500,
+html.dark .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+/* Inputs in dark mode */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #020617 !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b;
+}
+
+/* Colored badges in dark mode */
+html.dark .bg-green-50  { background-color: rgba(34, 197, 94, 0.15) !important; }
+html.dark .bg-blue-50   { background-color: rgba(59, 130, 246, 0.15) !important; }
+html.dark .bg-yellow-50 { background-color: rgba(234, 179, 8, 0.15) !important; }
+html.dark .bg-red-50    { background-color: rgba(239, 68, 68, 0.15) !important; }
+html.dark .bg-amber-50  { background-color: rgba(245, 158, 11, 0.15) !important; }
+html.dark .bg-indigo-50 { background-color: rgba(99, 102, 241, 0.15) !important; }
+html.dark .bg-cyan-50   { background-color: rgba(6, 182, 212, 0.15) !important; }
+html.dark .bg-violet-50 { background-color: rgba(139, 92, 246, 0.15) !important; }
+html.dark .bg-purple-50 { background-color: rgba(168, 85, 247, 0.15) !important; }
+
+html.dark .border-green-300  { border-color: rgba(34, 197, 94, 0.4) !important; }
+html.dark .border-blue-300   { border-color: rgba(59, 130, 246, 0.4) !important; }
+html.dark .border-yellow-300 { border-color: rgba(234, 179, 8, 0.4) !important; }
+html.dark .border-red-300    { border-color: rgba(239, 68, 68, 0.4) !important; }
+html.dark .border-amber-300  { border-color: rgba(245, 158, 11, 0.4) !important; }
+html.dark .border-indigo-300 { border-color: rgba(99, 102, 241, 0.4) !important; }
+html.dark .border-cyan-300   { border-color: rgba(6, 182, 212, 0.4) !important; }
+html.dark .border-violet-300 { border-color: rgba(139, 92, 246, 0.4) !important; }
+html.dark .border-purple-300 { border-color: rgba(168, 85, 247, 0.4) !important; }
+
+html.dark .text-green-700  { color: #4ade80 !important; }
+html.dark .text-blue-700   { color: #60a5fa !important; }
+html.dark .text-yellow-700 { color: #facc15 !important; }
+html.dark .text-red-700    { color: #f87171 !important; }
+html.dark .text-amber-700  { color: #fbbf24 !important; }
+html.dark .text-indigo-700 { color: #818cf8 !important; }
+html.dark .text-cyan-700   { color: #22d3ee !important; }
+html.dark .text-violet-700 { color: #a78bfa !important; }
+html.dark .text-purple-700 { color: #c084fc !important; }
+
+html.dark select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+.scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+.scrollbar-thin::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+html.dark .scrollbar-thin::-webkit-scrollbar-thumb { background: #334155; }
+html.dark .scrollbar-thin::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* Line clamp utilities */
+.line-clamp-1, .line-clamp-2, .line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-1 { -webkit-line-clamp: 1; }
+.line-clamp-2 { -webkit-line-clamp: 2; }
+.line-clamp-3 { -webkit-line-clamp: 3; }
+
+/* ============================================================
+   FORM RESETS
+   ============================================================ */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] { -moz-appearance: textfield; }
+
+input[type='date']::-webkit-calendar-picker-indicator,
+input[type='time']::-webkit-calendar-picker-indicator {
+  filter: invert(0.2);
+  cursor: pointer;
+}
+html.dark input[type='date']::-webkit-calendar-picker-indicator,
+html.dark input[type='time']::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 12px;
+  padding-right: 2.25rem;
+  appearance: none;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fadeIn 0.2s ease-in-out; }
+.animate-slide-up { animation: slideUp 0.25s ease-out; }
+
+/* ============================================================
+   LEAFLET MAP OVERRIDES
+   ============================================================ */
+.leaflet-container {
+  background: #e5e7eb;
+  font-family: 'Inter', system-ui, sans-serif;
+  z-index: 0;
+}
+html.dark .leaflet-container {
+  background: #0f172a;
+}
+
+/* Vehicle marker wrapper */
+.vehicle-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Selected vehicle pulse */
+.vehicle-marker.selected::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #2563eb;
+  animation: vehiclePulse 1.6s ease-out infinite;
+}
+
+@keyframes vehiclePulse {
+  0%   { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* Popups — light & dark */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+html.dark .leaflet-popup-content-wrapper,
+html.dark .leaflet-popup-tip {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+.leaflet-popup-content {
+  margin: 10px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Attribution */
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.8) !important;
+  color: #000 !important;
+  font-size: 10px !important;
+}
+html.dark .leaflet-control-attribution {
+  background: rgba(15, 23, 42, 0.8) !important;
+  color: #94a3b8 !important;
+}
+.leaflet-control-attribution a { color: #2563eb !important; }
+
+/* Zoom controls */
+.leaflet-control-zoom a {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #e5e7eb !important;
+}
+.leaflet-control-zoom a:hover { background: #f3f4f6 !important; }
+html.dark .leaflet-control-zoom a {
+  background: #0f172a !important;
+  color: #f1f5f9 !important;
+  border-color: #1e293b !important;
+}
+html.dark .leaflet-control-zoom a:hover { background: #1e293b !important; }
